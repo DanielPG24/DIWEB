@@ -1,12 +1,618 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Alex Studio — Diseño Web</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0b0f;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(11, 11, 15, 0.75);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #8b5cf6;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: #aaa;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 160px 7% 100px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: #7c3aed;
+            filter: blur(180px);
+            opacity: 0.25;
+            top: 10%;
+            right: -100px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid #333;
+            border-radius: 50px;
+            color: #bbb;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        h1 {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            line-height: 0.95;
+            letter-spacing: -5px;
+            margin-bottom: 30px;
+        }
+
+        h1 span {
+            color: #8b5cf6;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #aaa;
+            font-size: 1.15rem;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: #8b5cf6;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            border: 1px solid #333;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            border-color: #8b5cf6;
+            color: #a78bfa;
+        }
+
+        /* GENERAL */
+        section {
+            padding: 110px 7%;
+        }
+
+        .section-title {
+            margin-bottom: 60px;
+        }
+
+        .section-title small {
+            color: #8b5cf6;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-top: 10px;
+        }
+
+        /* PROJECTS */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .project {
+            min-height: 400px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #15151b;
+            border: 1px solid #25252d;
+            position: relative;
+            transition: 0.4s;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            border-color: #8b5cf6;
+        }
+
+        .project-image {
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #17121f, #302050);
+        }
+
+        .project:nth-child(2) .project-image {
+            background: linear-gradient(135deg, #102020, #164e63);
+        }
+
+        .project:nth-child(3) .project-image {
+            background: linear-gradient(135deg, #201313, #713f12);
+        }
+
+        .project:nth-child(4) .project-image {
+            background: linear-gradient(135deg, #15152a, #312e81);
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .project-info p {
+            color: #888;
+        }
+
+        /* SERVICES */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service {
+            padding: 35px;
+            background: #111116;
+            border: 1px solid #24242b;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .service:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .service h3 {
+            margin-bottom: 12px;
+        }
+
+        .service p {
+            color: #888;
+        }
+
+        /* ABOUT */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: #999;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .skills {
+            display: grid;
+            gap: 20px;
+        }
+
+        .skill {
+            background: #15151b;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .bar {
+            height: 6px;
+            background: #292932;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+            background: #8b5cf6;
+            width: 90%;
+        }
+
+        .bar.css span {
+            width: 85%;
+        }
+
+        .bar.js span {
+            width: 75%;
+        }
+
+        .bar.ui span {
+            width: 92%;
+        }
+
+        /* CONTACT */
+        .contact {
+            text-align: center;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .contact h2 {
+            font-size: clamp(3rem, 7vw, 6rem);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .contact p {
+            color: #888;
+            margin-bottom: 35px;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid #222;
+            padding: 30px 7%;
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+            nav ul {
+                display: none;
+            }
+
+            .projects,
+            .services,
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                letter-spacing: -3px;
+            }
+
+            .about {
+                gap: 40px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Módulo de Diseño de Interfaces Web</h1>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Alex<span>.</span></div>
+
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+
+            <div class="tag">
+                ✦ Diseñador web & creativo digital
+            </div>
+
+            <h1>
+                Diseño webs que<br>
+                <span>dejan huella.</span>
+            </h1>
+
+            <p>
+                Creo experiencias digitales modernas, rápidas y visualmente
+                impactantes para marcas, empresas y proyectos que quieren
+                destacar en Internet.
+            </p>
+
+            <div class="buttons">
+                <a href="#proyectos" class="btn btn-primary">
+                    Ver proyectos
+                </a>
+
+                <a href="#contacto" class="btn btn-secondary">
+                    Contactar
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos">
+
+        <div class="section-title">
+            <small>Portfolio</small>
+            <h2>Proyectos seleccionados</h2>
+        </div>
+
+        <div class="projects">
+
+            <article class="project">
+                <div class="project-image">◈</div>
+                <div class="project-info">
+                    <h3>Nova Studio</h3>
+                    <p>Branding · Diseño web · UX/UI</p>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="project-image">◉</div>
+                <div class="project-info">
+                    <h3>Ocean Finance</h3>
+                    <p>Web corporativa · Desarrollo frontend</p>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="project-image">✦</div>
+                <div class="project-info">
+                    <h3>Monarch</h3>
+                    <p>E-commerce · Dirección de arte</p>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="project-image">△</div>
+                <div class="project-info">
+                    <h3>Vertex</h3>
+                    <p>Landing page · Animaciones · UX</p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+
+        <div class="section-title">
+            <small>Qué hago</small>
+            <h2>Mis servicios</h2>
+        </div>
+
+        <div class="services">
+
+            <div class="service">
+                <div class="service-icon">✦</div>
+                <h3>Diseño Web</h3>
+                <p>
+                    Diseños modernos y personalizados adaptados a la identidad
+                    de cada proyecto.
+                </p>
+            </div>
+
+            <div class="service">
+                <div class="service-icon">⌘</div>
+                <h3>Desarrollo</h3>
+                <p>
+                    Desarrollo frontend limpio, responsive y optimizado para
+                    todos los dispositivos.
+                </p>
+            </div>
+
+            <div class="service">
+                <div class="service-icon">◎</div>
+                <h3>UX / UI</h3>
+                <p>
+                    Interfaces intuitivas centradas en ofrecer una experiencia
+                    sencilla y agradable.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi">
+
+        <div class="about">
+
+            <div class="about-text">
+                <div class="section-title">
+                    <small>Sobre mí</small>
+                    <h2>Diseño con propósito.</h2>
+                </div>
+
+                <p>
+                    Soy diseñador web especializado en crear experiencias
+                    digitales que combinan estética, funcionalidad y estrategia.
+                </p>
+
+                <p>
+                    Me gusta transformar ideas complejas en interfaces simples,
+                    atractivas y fáciles de utilizar.
+                </p>
+            </div>
+
+            <div class="skills">
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>HTML</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="bar">
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>CSS</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="bar css">
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>JavaScript</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="bar js">
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>UI / UX</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="bar ui">
+                        <span></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+
+        <div class="contact">
+
+            <h2>
+                ¿Tienes un proyecto
+                <span style="color:#8b5cf6;">en mente?</span>
+            </h2>
+
+            <p>
+                Cuéntame tu idea y hagamos algo increíble juntos.
+            </p>
+
+            <a href="mailto:hola@alexstudio.com" class="btn btn-primary">
+                hola@alexstudio.com
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span>© 2026 Alex Studio</span>
+        <span>Diseñado y desarrollado con ♥</span>
+    </footer>
+
 </body>
 </html>
+
+
   
