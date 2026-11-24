@@ -1,0 +1,31 @@
+
+body {
+    background-color: #333333;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 30px;
+}
+
+h1 {
+    color: lightblue;
+    text-align: center;
+}
+
+h2 {
+    color: lightyellow;
+}
+
+p {
+    line-height: 1.6;
+}
+
+ul {
+    line-height: 1.8;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 15px;
+    border-top: 1px solid white;
+}
