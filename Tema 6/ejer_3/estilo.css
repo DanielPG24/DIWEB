@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 h1 {
     color: blue;
     font-size: 30px;
@@ -24,4 +25,32 @@ p {
     4. Rojo
 
     6. Que obtiene el estilo del archivo CSS
+=======
+h1 {
+    color: blue;
+    font-size: 30px;
+}
+
+p {
+    color: black;
+}
+
+/* 
+    1. ¿De qué color aparece el título?
+    2. ¿Qué tamaño tiene el título?
+    3. ¿De qué color aparece el primer párrafo?
+    4. ¿De qué color aparece el segundo párrafo?
+    5. Modifica el HTML para que el título aparezca en negro utilizando un estilo en línea.
+    6. Elimina los estilos internos. ¿Qué sucede con los colores? 
+
+    1. De color verde
+
+    2. De 32 px/2 em
+
+    3. Naranja
+
+    4. Rojo
+
+    6. Que obtiene el estilo del archivo CSS
+>>>>>>> 34d8aab5cf0045ac7f47c383b0d554708e9cbba0
 */
