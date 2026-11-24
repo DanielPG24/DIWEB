@@ -1,0 +1,9 @@
+main p {} /* Todos los párrafos dentro de main */
+
+main>p {} /* Párrafos directos dentro de main */
+
+h2+p {} /* Párrafos que siguen a un encabezado h2 */
+
+h2~p {} /* Párrafos hermanos que siguen a un encabezado h2 */
+
+p.importante {} /* Párrafos con la clase "importante" */
